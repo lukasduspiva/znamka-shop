@@ -4,11 +4,9 @@ let s = ReasonReact.string;
 let make = (~tariffs, ~onSubmit) => {
   let (tariffId , setTariffId) = React.useState(() => "");
   let (licensePlate , setLicensePlate) = React.useState(() => "");
-  let (validFrom , setValidFrom) = React.useState(() => "");
   let (email , setEmail) = React.useState(() => "");
   let tariffFieldId = "tariff-field-id";
   let licensePlateFieldId = "licensePlate-field-id";
-  let validFromFieldId = "validFrom-field-id";
   let emailFieldId = "email-field-id";
   
 <form
@@ -17,7 +15,6 @@ let make = (~tariffs, ~onSubmit) => {
             ReactEvent.Form.preventDefault(evt);
             onSubmit({
               "email": email,
-              "validFrom": validFrom,
               "licensePlate": licensePlate,
               "tariffId": tariffId,
             });
@@ -54,18 +51,6 @@ let make = (~tariffs, ~onSubmit) => {
             value=licensePlate
             onChange={
                 (event) => setLicensePlate(
-                    event->ReactEvent.Form.target##value
-                )
-            }
-        />
-      </div>
-      <div>
-        <label htmlFor=validFromFieldId>{React.string("validFrom")}</label>
-        <input type_="text" 
-            id=validFromFieldId
-            value=validFrom
-            onChange={
-                (event) => setValidFrom(
                     event->ReactEvent.Form.target##value
                 )
             }
